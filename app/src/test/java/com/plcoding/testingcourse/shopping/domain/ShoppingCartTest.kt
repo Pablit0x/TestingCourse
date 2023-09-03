@@ -57,4 +57,21 @@ internal class ShoppingCartTest {
             cart.addProduct(product, -5)
         }
     }
+
+
+    // Instead of making a private methods open just for testing purposes, we should test a function that is using that method.
+    @Test
+    fun `isValidProduct returns invalid for non existing product`(){
+        val product = Product(
+            id = 9999,
+            name = "Popcorn",
+            price = 2.0
+        )
+
+        cart.addProduct(product = product, quantity = 1)
+
+        val totalPriceSum = cart.getTotalCost()
+
+        assertThat(totalPriceSum).isEqualTo(0.0)
+    }
 }

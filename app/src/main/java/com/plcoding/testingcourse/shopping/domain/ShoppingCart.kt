@@ -18,7 +18,7 @@ class ShoppingCart {
     }
 
     private fun isValidProduct(product: Product): Boolean {
-        return product.price < 0.0 && product.id in validProductIds
+        return product.price >= 0.0 && product.id in validProductIds
     }
 
     fun getTotalCost(): Double {
