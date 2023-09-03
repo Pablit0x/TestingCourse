@@ -4,6 +4,7 @@ import assertk.assertFailure
 import assertk.assertThat
 import assertk.assertions.isEqualTo
 import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.RepeatedTest
 import org.junit.jupiter.api.Test
 
 
@@ -32,6 +33,19 @@ class ShoppingCartTest {
 
     @Test
     fun `Add product with negative quantity, throws Exception`(){
+        val product = Product(
+            id = 0,
+            name = "Ice cream",
+            price = 2.0
+        )
+
+        assertFailure {
+            cart.addProduct(product = product, quantity = -1)
+        }
+    }
+
+    @RepeatedTest(value = 100)
+    fun `Add product with negative quantity, throws Exception - with repeat`(){
         val product = Product(
             id = 0,
             name = "Ice cream",
